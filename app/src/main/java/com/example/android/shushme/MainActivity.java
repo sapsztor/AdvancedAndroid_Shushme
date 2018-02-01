@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements
         OnConnectionFailedListener {
 
     // Constants
-    public static final String TAG = MainActivity.class.getSimpleName();
+    //public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = "PSX";
     private static final int PERMISSIONS_REQUEST_FINE_LOCATION = 111;
     private static final int PLACE_PICKER_REQUEST = 1;
 
@@ -98,11 +99,14 @@ public class MainActivity extends AppCompatActivity implements
                 SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                 editor.putBoolean(getString(R.string.setting_enabled), isChecked);
                 mIsEnabled = isChecked;
+                Log.d(TAG, "MainActivity mIsEnabled-> " + mIsEnabled);
                 editor.commit();
                 if(isChecked) {
                     mGeofencing.registerAllGeofences();
-                } else{
+                    Log.d(TAG, "MainActivity registerAllGeofences");
+                } else {
                     mGeofencing.unRegisterAllGeofences();
+                    Log.d(TAG, "MainActivity unRegisterAllGeofences");
                 }
             }
         });
@@ -200,6 +204,10 @@ public class MainActivity extends AppCompatActivity implements
             public void onResult(@NonNull PlaceBuffer places) {
                 mAdapter.swapPlaces(places);
                 // TODO (11) Call updateGeofenceList and registerAllGeofences if mIsEnabled is true
+                mGeofencing.updateGeofencesList(places);
+                if(mIsEnabled){
+                    mGeofencing.registerAllGeofences();
+                }
             }
         });
     }

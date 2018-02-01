@@ -38,6 +38,7 @@ public class Geofencing implements ResultCallback {
         mGoogleApiClient = client;
         mGeofencePendingIntent = null;
         mGeofenceList = new ArrayList<>();
+        Log.d(TAG, "Geofencing.Geofencing" );
     }
     
     public void registerAllGeofences(){
@@ -54,10 +55,12 @@ public class Geofencing implements ResultCallback {
         } catch (SecurityException securityException) {
             Log.d(TAG, "Geofencing.registerAllGeofences SecurityException->" + securityException.getMessage());
         }
+        Log.d(TAG, "Geofencing.registerAllGeofences" );
     }
     
     public void unRegisterAllGeofences(){
-        if(mGoogleApiClient == null || !mGoogleApiClient.isConnected() ) {
+        if(mGoogleApiClient == null || ! mGoogleApiClient.isConnected() ) {
+            Log.d(TAG, "Geofencing.unRegisterAllGeofences empty return" );
             return;
         }
         try {
@@ -69,10 +72,12 @@ public class Geofencing implements ResultCallback {
         } catch (SecurityException securityException) {
             Log.d(TAG, "Geofencing.unRegisterAllGeofences SecurityException->" + securityException.getMessage());
         }
+        Log.d(TAG, "Geofencing.unRegisterAllGeofences" );
     }
     
     
     public void updateGeofencesList(PlaceBuffer places){
+        Log.d(TAG, "Geofencing.updateGeofencesList" );
         mGeofenceList = new ArrayList<>();
         if(places == null || places.getCount() == 0) return ;
         for(Place place : places){
