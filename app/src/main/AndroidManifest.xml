@@ -11,7 +11,8 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="insert-your-api-key-here" />
+            android:value="@string/API_KEY">
+        </meta-data>
 
         <activity android:name="com.example.android.shushme.MainActivity">
             <intent-filter>
@@ -31,4 +32,5 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 </manifest>

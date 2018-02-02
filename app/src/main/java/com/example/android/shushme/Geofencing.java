@@ -37,7 +37,9 @@ import java.util.List;
 public class Geofencing implements ResultCallback {
 
     // Constants
-    public static final String TAG = Geofencing.class.getSimpleName();
+    //public static final String TAG = Geofencing.class.getSimpleName();
+    public static final String TAG = "PSX";
+    
     private static final float GEOFENCE_RADIUS = 50; // 50 meters
     private static final long GEOFENCE_TIMEOUT = 24 * 60 * 60 * 1000; // 24 hours
 
